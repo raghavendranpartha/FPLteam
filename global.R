@@ -29,7 +29,8 @@ playerdata <- data %>%
   mutate(Selected = as.numeric(gsub("%","",Selected))) %>%
   mutate(Price = as.numeric(gsub(poundSymbl,"",Price))) %>%
   mutate(Total = as.numeric(Total)) %>%
-  mutate(Pos = factor(Pos,levels=c("GKP","DEF","MID","FWD")))
+  mutate(Pos = factor(Pos,levels=c("GKP","DEF","MID","FWD"))) %>%
+  mutate(ID=seq(1,n()))
 
   
 
@@ -87,6 +88,6 @@ lpteam_2 <- function(pdata, team = "full", numgk = 2, numde = 5,nummi = 5, numfw
   
   inds <- as.logical(get.variables(lprec))
   arrange(pdata[inds,],Pos) %>%
-       select(c(Player,Team,Pos,Price,Total))
+       select(c(ID,Player,Team,Pos,Price,Total))
   
 }
